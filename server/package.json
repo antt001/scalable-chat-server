@@ -1,0 +1,29 @@
+{
+  "name": "socket.io-chat",
+  "version": "0.0.0",
+  "description": "A simple chat client using socket.io",
+  "main": "index.js",
+  "author": "Grant Timmerman",
+  "private": true,
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "4.13.4",
+    "jsonwebtoken": "^8.5.1",
+    "mysql2": "^2.1.0",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "sequelize": "^5.21.6",
+    "socket.io": "^1.7.2",
+    "socket.io-redis": "^3.0.0",
+    "socketio-auth": "^0.1.1"
+  },
+  "scripts": {
+    "start": "sequelize-cli db:migrate && node index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3",
+    "sequelize-cli": "^5.5.1"
+  }
+}

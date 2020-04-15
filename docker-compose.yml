@@ -1,0 +1,89 @@
+version: '3.5'
+
+services:
+  nginx:
+    build: ./nginx
+    links:
+      - server-john
+      - server-paul
+      - server-george
+      - server-ringo
+    ports:
+    - "3000:80"
+    restart: always
+
+  mysql:
+    image: mysql:8.0.18
+    container_name: mysql
+    environment:
+      MYSQL_DATABASE: database_development
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - "3306:3306"
+    expose:
+      - "3306"
+    restart: always
+
+  server-john:
+    build: ./server
+    links:
+      - redis
+      - mysql
+    depends_on:
+      - redis
+      - mysql
+    expose:
+      - "3000"
+    environment:
+      - NAME=John
+    restart: always
+
+  server-paul:
+    build: ./server
+    links:
+      - redis
+      - mysql
+    depends_on:
+      - redis
+      - mysql
+    expose:
+      - "3000"
+    environment:
+      - NAME=Paul
+    restart: always
+
+  server-george:
+    build: ./server
+    links:
+      - redis
+      - mysql
+    depends_on:
+      - redis
+      - mysql
+    expose:
+      - "3000"
+    environment:
+      - NAME=George
+    restart: always
+
+  server-ringo:
+    build: ./server
+    links:
+      - redis
+      - mysql
+    depends_on:
+      - redis
+      - mysql
+    expose:
+      - "3000"
+    environment:
+      - NAME=Ringo
+    restart: always
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    expose:
+      - "6379"
+    restart: always
